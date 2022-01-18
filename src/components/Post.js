@@ -5,7 +5,9 @@ import BlogContext from "./BlogContext";
 
 const Post = () => {
     const {postId} = useParams()
-    const {posts} = useContext(BlogContext)
+    const {posts, comments} = useContext(BlogContext)
+
+
 
     const post = posts.find(p => postId === p.id)
 
@@ -19,14 +21,17 @@ const Post = () => {
             <AddComment postId={post.id}/>
         </div>
         <ul>
-            {post.comments.map(comment => {
-                return (<li>
-                    <Comment
-                        content={comment.content}
-                        id={comment.id}
-                        postId={post.id}
-                    />
-                </li>)
+            {comments.filter(
+                comment => comment.postId === postId).map(
+                    comment => {
+                        return (<li>
+                            <Comment
+                                content={comment.content}
+                                id={comment.id}
+                                key={comment.id}
+                                postId={post.id}
+                            />
+                    </li>)
             })}
         </ul>
     </div>)

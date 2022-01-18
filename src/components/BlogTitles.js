@@ -7,7 +7,7 @@ const BlogTitles = () => {
     return (<div>
         <ul>
             {posts.map( post => {
-                return (<li>
+                return (<li key={post.id}>
                     <NavLink exact to={`/post/${post.id}`}>
                         <span>
                             {post.title}
