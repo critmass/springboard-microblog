@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import BlogContext from "./BlogContext";
 
 const BlogTitles = () => {
-    const {posts} = useContext(BlogContext)
+    const posts = useSelector(state => state.posts)
     return (<div>
         <ul>
-            {posts.map( post => {
+            {Object.values(posts).map( post => {
                 return (<li key={post.id}>
                     <NavLink exact to={`/post/${post.id}`}>
                         <span>

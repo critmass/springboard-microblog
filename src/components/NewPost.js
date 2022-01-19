@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
-import BlogContext from "./BlogContext";
-import {v4 as uuid} from "uuid"
+import React, { useState } from "react";
+import InputGroupBundle from "./InputGroupBundle";
+import { Button } from "reactstrap";
+import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addPost } from "../actionMaker/postActionMaker";
 
-const blankInputs = { title: "", description: "", content: "" }
-
-const NewPost = (postInputs=blankInputs) => {
-    const {setPosts} = useContext(BlogContext)
+const NewPost = (postInputs) => {
+    const dispatch = useDispatch()
     const [inputs, setInputs] = useState({...postInputs})
 
     const handleChange = e => {
@@ -14,8 +15,9 @@ const NewPost = (postInputs=blankInputs) => {
     }
 
     const handleSubmit = () => {
-        setPosts(posts => [...posts, {...inputs, id:uuid(), comments:[]} ])
-        setInputs({...postInputs})
+        const { title, description, content } = inputs
+        dispatch(addPost(title, description, content))
+        return (<Redirect to="/"/>)
     }
 
     return (<div>

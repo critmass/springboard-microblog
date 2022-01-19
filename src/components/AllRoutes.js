@@ -1,8 +1,10 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Switch, Route } from "react-router-dom";
 import BlogTitles from "./BlogTitles";
 import NewPost from "./NewPost";
 import Post from "./Post";
+
+const blankInputs = { title: "", description: "", content: "" }
 
 const AllRoutes = () => {
     return (<Switch>
@@ -10,7 +12,7 @@ const AllRoutes = () => {
             <BlogTitles/>
         </Route>
         <Route exact path="/new">
-            <NewPost/>
+            <NewPost postInputs={blankInputs}/>
         </Route>
         <Route path="/post/:postId">
             <Post/>

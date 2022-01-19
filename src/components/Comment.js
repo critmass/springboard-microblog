@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { Button } from "reactstrap";
-import BlogContext from "./BlogContext";
+import { removeComment } from "../actionMaker/commentActionMaker";
+
 
 const Comment = ({id, content}) => {
-    const {comments, setComments} = useContext(BlogContext)
+    const dispatch = useDispatch()
 
     const handleClick = () => {
-        const index = comments.findIndex(comment => comment.id === id)
-        setComments(comments => [...comments.splice(index)])
+        dispatch(removeComment(id))
     }
 
     return (<div>

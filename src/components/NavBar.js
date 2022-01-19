@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar, NavItem } from "reactstrap"
+import { Nav, Navbar, NavItem } from "reactstrap"
 
 const NavBar = () => {
     return (<div className="jumbotron">
@@ -12,6 +12,7 @@ const NavBar = () => {
                         Blog
                     </NavLink>
                 </NavItem>
+                --
                 <NavItem>
                     <NavLink exact to="/new">
                         Add new post

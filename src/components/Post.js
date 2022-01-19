@@ -1,18 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useParams } from "react-router";
 import AddComment from "./AddComment";
-import BlogContext from "./BlogContext";
+import Comment from "./Comment";
+import { useSelector } from "react-redux";
 
 const Post = () => {
     const {postId} = useParams()
-    const {posts, comments} = useContext(BlogContext)
+    const {posts, comments} = useSelector(state=>state)
 
-
-
-    const post = posts.find(p => postId === p.id)
+    const post = posts[postId]
 
     return (<div>
-        <h1 >{post.title}</h1>
+        <h1>{post.title}</h1>
         <h4>{post.description}</h4>
         <div>
             {post.content}

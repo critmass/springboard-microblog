@@ -1,8 +1,11 @@
-import React, { useContext, useState } from "react";
-import BlogContext from "./BlogContext";
+import React, { useState } from "react";
+import InputGroupBundle from "./InputGroupBundle";
+import { Button } from "reactstrap";
+import { useDispatch } from "react-redux";
+import { addComment } from "../actionMaker/commentActionMaker";
 
-const AddComment = (postId) => {
-    const {setComments} = useContext(BlogContext)
+const AddComment = ({postId}) => {
+    const dispatch = useDispatch()
     const [content, setContent] = useState("")
 
     const handleChange = e => {
@@ -11,8 +14,8 @@ const AddComment = (postId) => {
     }
 
     const handleSubmit = () => {
-        setComments(comments =>
-            [...comments, {content, id:uuid(), postId}])
+        dispatch(addComment(postId, content))
+        setContent("")
     }
 
     return (<div>
