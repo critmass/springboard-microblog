@@ -2,7 +2,8 @@ import {
     ADD_POST,
     EDIT_POST,
     GET_POSTS,
-    REMOVE_POST
+    REMOVE_POST,
+    VOTE
 } from "../actionMaker/actionList";
 
 const INITIAL_STATE = {}
@@ -19,6 +20,11 @@ const posts = (state=INITIAL_STATE, action) => {
             return {...newState}
         case GET_POSTS:
             return action.posts
+        case VOTE:
+            return {
+                ...state,
+                [action.id]:{...state[action.id], votes:action.votes}
+            }
         default:
             return state;
     }

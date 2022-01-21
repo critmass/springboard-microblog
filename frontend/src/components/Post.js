@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import AddComment from "./AddComment";
 import Comment from "./Comment";
 import { useSelector } from "react-redux";
+import PostVoteController from "./PostVoteController";
 
 const Post = () => {
     const {postId} = useParams()
@@ -16,9 +17,8 @@ const Post = () => {
         <div>
             {post.content}
         </div>
-        <div>
-            <AddComment postId={post.id}/>
-        </div>
+        <AddComment postId={post.id}/>
+        <PostVoteController votes={post.votes} postId={post.id}/>
         <ul>
             {comments.filter(
                 comment => comment.postId === post.id).map(

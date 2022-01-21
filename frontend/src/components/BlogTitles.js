@@ -6,7 +6,9 @@ const BlogTitles = () => {
     const posts = useSelector(state => state.posts)
     return (<div>
         <ul>
-            {Object.values(posts).map( post => {
+            {Object.values(posts).sort((a, b) => {
+                return b.votes - a.votes
+            }).map( post => {
                 return (<li key={post.id}>
                     <NavLink exact to={`/post/${post.id}`}>
                         <span>
