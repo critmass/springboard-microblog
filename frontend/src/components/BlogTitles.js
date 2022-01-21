@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import PostVoteController from "./PostVoteController";
 
 const BlogTitles = () => {
     const posts = useSelector(state => state.posts)
@@ -15,6 +16,10 @@ const BlogTitles = () => {
                             {post.title}
                         </span>
                     </NavLink>: {post.description}
+                    <PostVoteController
+                                    votes={post.votes}
+                                    postId={post.id}
+                    />
                 </li>)
             })}
         </ul>
